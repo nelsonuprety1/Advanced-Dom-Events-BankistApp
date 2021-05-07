@@ -45,64 +45,95 @@ console.log(allButtons);
 console.log(document.getElementsByClassName("btn"));
 
 // creating and inserting elements
-const message = document.createElement("div");
-message.classList.add("cookie-message");
-// message.textContent = 'We use cookies for improved functionality and analytics';
-message.innerHTML =
-  'We use cookies for improved functionality and analytics. <button class ="btn btn--close-cookie"> Got it! </button>';
+// const message = document.createElement("div");
+// message.classList.add("cookie-message");
+// // message.textContent = 'We use cookies for improved functionality and analytics';
+// message.innerHTML =
+//   'We use cookies for improved functionality and analytics. <button class ="btn btn--close-cookie"> Got it! </button>';
 
-// header.prepend(message);
-header.append(message);
-// header.append(message.cloneNode(true));
-// header.before(message);
-header.after(message);
+// // header.prepend(message);
+// header.append(message);
+// // header.append(message.cloneNode(true));
+// // header.before(message);
+// header.after(message);
 
-// delete elements
-document
-  .querySelector(".btn--close-cookie")
-  .addEventListener("click", function () {
-    // new way
-    message.remove();
-    // old way of doing
-    // message.parentElement.removeChild(message);
-  });
+// // delete elements
+// document
+//   .querySelector(".btn--close-cookie")
+//   .addEventListener("click", function () {
+//     // new way
+//     message.remove();
+//     // old way of doing
+//     // message.parentElement.removeChild(message);
+//   });
 
-// styles
-message.style.backgroundColor = "#37383d";
-message.style.width = "120%";
+// // styles
+// message.style.backgroundColor = "#37383d";
+// message.style.width = "120%";
 
-console.log(getComputedStyle(message).color);
+// console.log(getComputedStyle(message).color);
 
-message.style.height =
-  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + "px";
+// message.style.height =
+//   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + "px";
 
-document.documentElement.style.setProperty("--color-primary", "orangered");
+// // document.documentElement.style.setProperty("--color-primary", "orangered");
 
-// atributes
-const logo = document.querySelector('.nav__logo');
+// // atributes
+// const logo = document.querySelector('.nav__logo');
 
 
-logo.alt = 'Beautiful minimalist logo';
-// Non standard
-console.log(logo.designer);
-console.log(logo.getAttribute('designer'));
-logo.setAttribute('company', 'Bankist');
+// logo.alt = 'Beautiful minimalist logo';
+// // Non standard
+// console.log(logo.designer);
+// console.log(logo.getAttribute('designer'));
+// logo.setAttribute('company', 'Bankist');
 
-console.log(logo.src);
-console.log(logo.getAttribute('src'));
+// console.log(logo.src);
+// console.log(logo.getAttribute('src'));
 
-const link = document.querySelector('.nav__link--btn');
-console.log(link.href);
-console.log(link.getAttribute('href'));
+// const link = document.querySelector('.nav__link--btn');
+// console.log(link.href);
+// console.log(link.getAttribute('href'));
 
-// data attributes
-console.log(logo.dataset.versionNumber);
+// // data attributes
+// console.log(logo.dataset.versionNumber);
 
-// classes
-logo.classList.add('c','g');
-logo.classList.remove('c','s');
-logo.classList.toggle('c','s');
-logo.classList.contains('c','s');
+// // classes
+// logo.classList.add('c','g');
+// logo.classList.remove('c','s');
+// logo.classList.toggle('c','s');
+// logo.classList.contains('c','s');
 
-// dont use
-// logo.className = 'nelson'
+// // dont use
+// // logo.className = 'nelson'
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click',function(e){
+  // getting coordinates
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+
+  console.log(e.target.getBoundingClientRect());
+
+  console.log('Current scroll (X/Y', window.pageXOffset, window.pageYOffset);
+
+  console.log('height/width viewport', document.documentElement.clientHeight,
+   document.documentElement.clientWidth);
+
+  // scrolling
+  // this both is the old way
+  // first argument is left position
+  // window.scrollTo(s1coords.left + window.pageXOffset,
+  //    s1coords.top +  window.pageYOffset);
+
+  // old way
+  // window.scrollTo({
+  //  left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top +  window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+// new way
+// works in modern browser
+  section1.scrollIntoView({behavior: 'smooth'});
+});
